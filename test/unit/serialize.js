@@ -198,6 +198,11 @@ describe('serialize( obj )', function () {
 
             expect(serialize(fn, {isJSON: true})).to.equal('undefined');
         });
+
+        it('should accept a `disableEscapeUnsafe` option', function () {
+            expect(serialize('<', {disableEscapeUnsafe: false})).to.equal('"\\u003C"');
+            expect(serialize('<', {disableEscapeUnsafe: true})).to.equal('\"<\"');
+        });
     });
 
     describe('backwards-compatability', function () {
